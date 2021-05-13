@@ -11,9 +11,12 @@ s3.listBuckets(function(err, data) {
 			Bucket: `${bucketData[i].Name}` /* required */
 		};
 		s3.getBucketEncryption(params, function(err, data) {
-			try {
+			try {                                        // first it will print all non encypted buckets and then vice versa
+				if(err){
+					console.log(bucketData[i].Name)   // Non Encrypted Bucket List
+				}
 				if (data) {
-					console.log(bucketData[i].Name);
+					console.log(bucketData[i].Name);  // Encrpted Bucket List 
 				}
 			} catch (err) {}
 		});
